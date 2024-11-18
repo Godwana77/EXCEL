@@ -38,21 +38,25 @@ def procesar_excel(libro_fuente, hoja_fuente, columna_buscar, libro_destino, hoj
             for col in range(1, ws_fuente.max_column + 1):
                 ws_fuente.cell(row=fila, column=col).fill = fill_azul_claro
               
-                ws_destino[valor_a_buscar].fill = fill_azul_claro
+               # ws_destino[valor_a_buscar]='fdfdf'
+                #.fill = fill_azul_claro
         else:
             ws_fuente.cell(row=fila, column=columna_resultado, value="No encontrado")
 
     # Guardar los cambios en el libro fuente
     wb_fuente.save(libro_fuente)
+    wb_destino.save(libro_fuente)
+    wb_fuente.close()
+    wb_destino.close()
     print(f"Se ha completado el procesamiento y se guardaron los resultados en '{libro_fuente}'.")
 
 # Ejemplo de uso
 procesar_excel(
-    libro_fuente="libro1.xlsx", #Aqui se copian lo datos de Lbros2
-    hoja_fuente="Hoja1",
+    libro_fuente="fuente.xlsx", #Aqui se copian lo datos de Lbros2
+    hoja_fuente="Hojafuente",
     columna_buscar=1,   # Columna con datos a buscar (en números, A=1, B=2...)
-    libro_destino="libro2.xlsx", #De aqui se extraen los datos
-    hoja_destino="Hoja1",
+    libro_destino="destino.xlsx", #De aqui se extraen los datos
+    hoja_destino="Hojadestino",
     columna_datos=1,    # Columna con claves en el libro destino
     columna_resultado=10 # Columna donde copiar los resultados
     #Abria que cambiar para que coja las colmnas necesarias
